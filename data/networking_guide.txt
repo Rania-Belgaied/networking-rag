@@ -1,0 +1,75 @@
+DNS AND NAME RESOLUTION
+
+DNS stands for Domain Name System. It translates human-readable domain names into IP addresses. Without DNS, users would need to memorize IP addresses to visit websites. DNS operates as a distributed hierarchical database across thousands of servers worldwide.
+
+A DNS query follows several steps. The client checks its local cache first. If not found, it contacts a recursive resolver. The resolver queries root nameservers, then TLD nameservers, then the authoritative nameserver for the domain. The final IP address is returned to the client and cached for future use.
+
+DNS record types include A records for IPv4 addresses, AAAA records for IPv6, CNAME for aliases, MX for mail servers, and TXT for verification purposes. TTL values control how long records are cached.
+
+Common DNS attacks include DNS spoofing, cache poisoning, and DDoS attacks against DNS infrastructure. DNSSEC adds cryptographic signatures to DNS records to prevent spoofing.
+
+DHCP AND IP ADDRESS MANAGEMENT
+
+DHCP automates IP address assignment on a network. Without DHCP, administrators would need to manually configure every device. DHCP servers maintain pools of available addresses and lease them to clients for a defined period.
+
+The DORA process describes DHCP operation: Discover, Offer, Request, Acknowledge. A client broadcasts a Discover message, the server responds with an Offer, the client sends a Request, and the server confirms with an Acknowledge message.
+
+DHCP leases are temporary and must be renewed. Lease duration is configurable. Short leases reclaim addresses quickly but generate more traffic. Long leases reduce traffic but can exhaust the address pool if devices leave without releasing their address.
+
+DHCP options allow servers to provide additional configuration including default gateway, DNS server addresses, domain name, and NTP server addresses alongside the IP address assignment.
+
+ROUTING AND SWITCHING
+
+A router forwards packets between different networks based on destination IP addresses. Routers maintain routing tables that map destination networks to outgoing interfaces. Routing can be static or dynamic.
+
+Static routing requires manual configuration of routes. It is simple and predictable but does not adapt to network changes. Static routes are suitable for small networks or specific traffic engineering requirements.
+
+Dynamic routing protocols automatically discover and maintain routes. OSPF is a link-state protocol used within an autonomous system. It builds a complete map of the network topology and calculates shortest paths using Dijkstra's algorithm.
+
+BGP is the exterior gateway protocol used between autonomous systems on the internet. It is a path-vector protocol that makes routing decisions based on policies, path attributes, and rules rather than purely on metrics. BGP is what makes global internet routing possible.
+
+A switch forwards frames within a network based on MAC addresses. Switches maintain MAC address tables that map addresses to ports. VLANs allow a single physical switch to be divided into multiple logical networks.
+
+FIREWALLS AND NETWORK SECURITY
+
+A firewall controls traffic between networks based on security rules. Firewalls can be hardware appliances, software applications, or cloud services. They are a fundamental component of network security architecture.
+
+Packet filtering firewalls inspect individual packets and apply rules based on source IP, destination IP, source port, destination port, and protocol. They are fast and simple but stateless — they cannot understand connection context.
+
+Stateful firewalls track the state of active connections in a state table. They understand whether a packet is initiating a new connection or belongs to an established one. This makes them significantly more secure than simple packet filters.
+
+Application layer firewalls operate at layer 7 and can inspect the actual content of traffic. They can block specific applications, detect malware in traffic, and enforce application-specific policies. They provide the highest security but introduce the most latency.
+
+Next-generation firewalls combine stateful inspection with deep packet inspection, intrusion prevention, application awareness, and threat intelligence. They are the current standard for enterprise security.
+
+VPN AND TUNNELING
+
+A VPN creates an encrypted tunnel over a public network. VPNs protect data confidentiality and integrity, and can mask the user's real IP address. They are used for remote access, site-to-site connectivity, and privacy.
+
+IPSec is a suite of protocols for securing IP communications. It provides authentication and encryption at the network layer. IPSec can operate in transport mode, which encrypts only the payload, or tunnel mode, which encrypts the entire packet.
+
+SSL/TLS VPNs operate at the application layer and use the same encryption as HTTPS. They are easier to deploy than IPSec VPNs and work through most firewalls without special configuration. OpenVPN and WireGuard are popular open-source SSL/TLS VPN implementations.
+
+NETWORK MONITORING AND TROUBLESHOOTING
+
+ICMP is used for network diagnostics and error reporting. The ping command sends ICMP echo requests to test connectivity. The traceroute command uses ICMP to map the path packets take across a network.
+
+Wireshark is a packet capture and analysis tool. It captures raw network traffic and allows inspection of individual packets at every layer of the OSI model. It is essential for deep troubleshooting of network issues.
+
+SNMP allows network devices to report status and statistics to a central management system. Devices send traps for significant events. Network management systems poll devices for metrics like bandwidth utilization, error rates, and CPU usage.
+
+NetFlow and sFlow are protocols for collecting network traffic statistics. They provide visibility into which hosts are communicating, which protocols are in use, and how much bandwidth each flow consumes. This data is essential for capacity planning and anomaly detection.
+
+THE OSI MODEL
+
+The OSI model describes network communication as seven distinct layers. Each layer has specific responsibilities and communicates with adjacent layers through defined interfaces.
+
+Layer 1 Physical handles the transmission of raw bits over a physical medium. It defines electrical signals, cable types, and connector specifications. Devices at this layer include hubs, repeaters, and cables.
+
+Layer 2 Data Link handles framing, MAC addressing, and error detection within a single network segment. Ethernet and WiFi operate at this layer. Switches are the primary layer 2 devices.
+
+Layer 3 Network handles logical addressing and routing between networks. IP operates at this layer. Routers are the primary layer 3 devices.
+
+Layer 4 Transport provides end-to-end communication services. TCP provides reliable, ordered delivery with error recovery. UDP provides fast, connectionless delivery without guarantees. Port numbers operate at this layer.
+
+Layers 5, 6, and 7 cover Session management, data Presentation and format conversion, and the Application interface respectively. HTTP, DNS, SMTP, and most user-facing protocols operate at layer 7.

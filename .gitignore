@@ -1,0 +1,19 @@
+# API keys
+.env
+
+# Vector database (generated automatically)
+chroma_db/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
