@@ -60,17 +60,3 @@ A: I don't have information on that topic.
    Scores  : [-10.7774, -11.1081]
 ```
 
-## Key Design Decisions
-
-**Why RAG instead of fine-tuning?** RAG updates instantly when 
-documents change, requires no retraining, and provides source 
-attribution — fine-tuning would bake knowledge into the model 
-with no traceability.
-
-**Why a reranker?** Embedding similarity captures general semantic 
-proximity but misses precise relevance. The cross-encoder reranker 
-reads the query and chunk together, giving significantly more 
-accurate relevance scores.
-
-**Why a score threshold?** Prevents the model from hallucinating 
-answers when no retrieved chunk is actually relevant to the question.
